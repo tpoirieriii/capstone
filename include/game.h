@@ -7,6 +7,7 @@
 #include "colors.h"
 #include "gameobject.h"
 #include "player.h"
+#include "button.h"
 
 namespace game {
 
@@ -25,8 +26,12 @@ public:
     void Run();
     void HandleResize();
     void HandleKeyboardEvents();
+    void StartScreen();
+    void PauseScreen();
+    void EndScreen();
 
 private:
+
     static inline fs::path resource_path_ =
         fs::current_path().append("resources");
     unsigned int                             level_ = 1;
@@ -38,6 +43,12 @@ private:
     float                                    scale_ = 1.0F;
     std::unique_ptr<Player>                  player_;
     std::vector<std::unique_ptr<GameObject>> game_objects_;
+    bool                                     paused_ = false;
+    
+
+    
+
+    
 };
 
 rl::Texture LoadTexture(const fs::path& texture_path);
